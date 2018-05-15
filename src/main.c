@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:01:19 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 23:01:25 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/15 23:40:29 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void		parse_arguments(t_ptr *p, int argc, char **argv)
 	fracts = (char*[NO_FRACTS]){"MANDLEBROT", "BURNING_SHIP", "JULIA",
 			"JULIETTE", "SNOWFLAKE", "TOTEM"};
 	if (argc < 2)
-		ft_error("Usage: ./fractol <fractal_name>\n");
+		ft_error("Usage: ./fractol <fractal_name|help>\n");
 	if (argc > 2)
 		ft_error("[Erreur] Trop d'arguments.\n");
 	i = -1;
