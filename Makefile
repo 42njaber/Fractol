@@ -29,6 +29,14 @@ else
 FILES += display colors
 endif
 
+ifndef DOUBLE
+DOUBLE = TRUE
+endif
+
+ifeq ($(DOUBLE), TRUE)
+MACROS += -D DOUBLE_P
+endif
+
 SRC_DIR = src
 SRC = $(FILES:%=$(SRC_DIR)/%.o)
 
@@ -53,6 +61,7 @@ libgxns/libgxns.a: force
 	make -C libgxns/ OPENCL=$(OPENCL) KEYBOARD=$(KEYBOARD)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c inc/fractol.h
+	@mkdir $(OBJ_DIR) &> /dev/null || true
 	$(CC) $(FLAGS) -o $@ -c $< $(MACROS) 
 
 $(NAME): $(LIB) $(OBJ) Makefile inc/fractol.h

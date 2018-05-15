@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 01:57:02 by njaber            #+#    #+#             */
-/*   Updated: 2018/04/27 06:05:21 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/15 22:20:31 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void			get_configs(t_ocl *opencl)
 	clGetDeviceInfo(opencl->gpus[0], CL_DEVICE_DOUBLE_FP_CONFIG,
 			sizeof(tmp), tmp, &tmp3);
 	ft_printf("Double support: %lu\n", *tmp);
+	opencl->gpu_double = *tmp;
 }
 
 t_ocl			*init_opencl(void)

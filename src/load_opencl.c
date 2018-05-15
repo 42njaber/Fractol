@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 20:23:49 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 21:23:03 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/15 22:47:02 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int		set_args(t_ptr *p, t_ocl *opencl, t_kernel *kernel, t_img *img)
 	return (err);
 }
 
+#ifdef DOUBLE_P
+
 static int		build_program(t_ocl *opencl, t_kernel *kernel)
 {
 	char		*tmp;
@@ -38,7 +40,12 @@ static int		build_program(t_ocl *opencl, t_kernel *kernel)
 	int			err;
 
 	kernel->program = create_program_from_file(opencl->gpu_context,
-			"src/kernel.cl");
+			opencl->gpu_double == 0 ? "src/fkernel.cl" : "src/dkernel.cl");
+	if (opencl->gpu_double == 0)
+		ft_printf("Unable to launch with double-point precision\n"
+				"Launching with single-point precision\n");
+	else
+		ft_printf("Launching with double-point precision\n");
 	err = clBuildProgram(kernel->program, 0, NULL,
 					"", NULL, NULL);
 	tmp = (char*)ft_memalloc(4096);
@@ -54,6 +61,35 @@ static int		build_program(t_ocl *opencl, t_kernel *kernel)
 	kernel->cores[1] = clCreateKernel(kernel->program, "clear_buf", &err);
 	return (err);
 }
+
+#else
+
+static int		build_program(t_ocl *opencl, t_kernel *kernel)
+{
+	char		*tmp;
+	size_t		tmp2;
+	int			err;
+
+	kernel->program = create_program_from_file(opencl->gpu_context,
+			"src/fkernel.cl");
+	ft_printf("Launching with single-point precision\n");
+	err = clBuildProgram(kernel->program, 0, NULL,
+					"", NULL, NULL);
+	tmp = (char*)ft_memalloc(4096);
+	clGetProgramBuildInfo(kernel->program, opencl->gpus[0],
+			CL_PROGRAM_BUILD_LOG, 4096, tmp, &tmp2);
+	ft_printf("Build log :\n%.*s\n", tmp2, tmp);
+	free(tmp);
+	if (err != CL_SUCCESS)
+		return (err);
+	kernel->cores[0] = clCreateKernel(kernel->program, "draw_fract", &err);
+	if (err != CL_SUCCESS)
+		return (err);
+	kernel->cores[1] = clCreateKernel(kernel->program, "clear_buf", &err);
+	return (err);
+}
+
+#endif
 
 t_kernel		*create_kernel(t_ptr *p)
 {

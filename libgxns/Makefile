@@ -60,7 +60,7 @@ $(LFT): force
 $(LPF): force
 	@$(MAKE) -C ../ft_printf/
 
-$(NAME): $(MLX) $(LFT) $(LPF) $(OBJ) libgxns.h Makefile
+$(NAME): $(MLX) $(LFT) $(LPF) $(OBJ) ../inc/libgxns.h Makefile
 	@rm -f $@
 	ar -rc $@ $(OBJ)
 	libtool -static -o $@ $@ $(MLX) $(LFT) $(LPF) 2> /dev/null

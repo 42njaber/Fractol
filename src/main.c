@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:01:19 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 21:25:27 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/15 23:01:25 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void		parse_arguments(t_ptr *p, int argc, char **argv)
 		if (ft_strcmp(fracts[i], argv[1]) == 0)
 			break ;
 	if (i >= NO_FRACTS)
-		ft_error("Fractales disponibles:\n - MANDLEBROT\n - JULIA\n"
-			" - BURNING_SHIP\n");
+		ft_error("Fractales disponibles:\n - MANDLEBROT\n - BURNING_SHIP\n"
+			" - JULIA\n - JULIETTE\n - SNOWFLAKE\n - TOTEM\n");
 	set_fract_parm(p, i);
 }
 
