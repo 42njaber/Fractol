@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 13:17:27 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 21:22:01 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/15 23:35:28 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	set_opencl(t_ptr *p)
 
 void		init_struct(t_ptr *p)
 {
-	if ((init_new_win(p->win, (t_ivec){1200, 800}, "FdF")) == 0)
+	if ((init_new_win(p->win, (t_ivec){1200, 800}, "fractol")) == 0)
 		ft_error("[Erreur] Echec de l'intialization de la fenètre\n");
 	p->mouse_pos = (t_ivec){0, 0};
 	p->parm = (t_vec2){0.0, 0.0};
