@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math.c                                             :+:      :+:    :+:   */
+/*   vectors.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/23 01:35:36 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/16 17:22:10 by njaber           ###   ########.fr       */
+/*   Created: 2018/05/20 01:17:25 by njaber            #+#    #+#             */
+/*   Updated: 2018/05/20 01:44:35 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libgxns.h"
 
-double			sqr(double n)
+t_vec3	vec_sub(t_vec3 v1, t_vec3 v2)
 {
-	return (n * n);
+	return ((t_vec3){v1.x - v2.x, v1.y - v2.y, v1.z - v2.z});
 }
 
-t_vec2			c_mult(t_vec2 z1, t_vec2 z2)
+t_vec3	vec_add(t_vec3 v1, t_vec3 v2)
 {
-	return ((t_vec2){z1.x * z2.x - z1.y * z2.y, z1.x * z2.y + z1.y * z2.x});
+	return ((t_vec3){v1.x + v2.x, v1.y + v2.y, v1.z + v2.z});
 }
 
-t_vec2			c_pow(t_vec2 z1, int pow)
+t_vec3	vec_mult(t_vec3 v1, double d)
 {
-	t_vec2 ret;
-
-	ret = z1;
-	while (--pow > 0)
-		ret = c_mult(ret, z1);
-	return (ret);
+	return ((t_vec3){v1.x * d, v1.y * d, v1.z * d});
 }
 
-t_vec2			c_add(t_vec2 z1, t_vec2 z2)
+double	length(t_vec3 v1)
 {
-	return ((t_vec2){z1.x + z2.x, z1.y + z2.y});
+	return (sqrt(sqr(v1.x) + sqr(v1.y) + sqr(v1.z)));
+}
+
+double	scalar(t_vec3 v1, t_vec3 v2)
+{
+	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }

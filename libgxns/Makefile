@@ -5,17 +5,12 @@ SRC = draw_fig.c \
 	  matrix.c \
 	  matrix2.c \
 	  math.c \
+	  vectors.c \
 	  colors.c \
 	  util.c \
 	  gnl/get_next_line.c
 
 ALT_SRC = init_opencl.c
-
-ifndef KEYBOARD
-KEYBOARD = AZERTY
-endif
-
-MACROS = -D $(KEYBOARD)
 
 ifndef OPENCL
 OPENCL = TRUE

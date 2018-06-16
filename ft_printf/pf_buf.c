@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/15 19:29:58 by njaber            #+#    #+#             */
-/*   Updated: 2018/01/18 11:55:20 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/30 03:01:31 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,15 @@ void			chr_tobuf(char c, size_t len, t_buf *buf)
 			ft_umin(len, B_SIZE - buf->printed % B_SIZE));
 		if (len >= B_SIZE - buf->printed % B_SIZE)
 		{
-			write(1, buf->buf, B_SIZE);
+			if (buf->write == 1)
+				write(1, buf->buf, B_SIZE);
+			else
+			{
+				if (buf->ret == NULL)
+					buf->ret = ft_strldup(buf->buf, B_SIZE);
+				else
+					buf->ret = ft_strljoin(buf->ret, buf->buf, B_SIZE, 1);
+			}
 			len -= B_SIZE - buf->printed % B_SIZE;
 			buf->printed += B_SIZE - buf->printed % B_SIZE;
 		}
@@ -87,7 +95,15 @@ void			str_tobuf(char *str, size_t len, t_buf *buf)
 			ft_umin(len, B_SIZE - buf->printed % B_SIZE));
 		if (len >= B_SIZE - buf->printed % B_SIZE)
 		{
-			write(1, buf->buf, B_SIZE);
+			if (buf->write == 1)
+				write(1, buf->buf, B_SIZE);
+			else
+			{
+				if (buf->ret == NULL)
+					buf->ret = ft_strldup(buf->buf, B_SIZE);
+				else
+					buf->ret = ft_strljoin(buf->ret, buf->buf, B_SIZE, 1);
+			}
 			str += B_SIZE - buf->printed % B_SIZE;
 			len -= B_SIZE - buf->printed % B_SIZE;
 			buf->printed += B_SIZE - buf->printed % B_SIZE;

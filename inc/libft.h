@@ -6,7 +6,7 @@
 /*   By: njaber <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 16:20:23 by njaber            #+#    #+#             */
-/*   Updated: 2018/03/15 12:33:13 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/30 03:11:23 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef unsigned char	t_byte;
 
 void			ft_bzero(void *s, size_t n);
 void			*ft_memalloc(size_t size);
+void			*ft_memdup(const void *mem, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
@@ -34,6 +35,9 @@ char			*ft_adtoa(const void *addr);
 int				ft_atoi(const char *str);
 char			*ft_bitstoa(t_byte byte);
 char			*ft_itoa(int n);
+int				ft_parse_int(const char *str, int *i);
+unsigned int	ft_parse_hex(const char *str, int *i);
+double			ft_parse_float(const char *str, int *i);
 char			*ft_strcat(char *s1, const char *s2);
 void			ft_strclr(char *s);
 int				ft_strcmp(const char *s1, const char *s2);
@@ -46,6 +50,8 @@ void			ft_striter(char *s, void (*f)(char*));
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 char			*ft_strjoin(const char *s1, const char *s2);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
+char			*ft_strldup(const char *mem, size_t len);
+char			*ft_strljoin(char *mem1, char *mem2, size_t len2, int del);
 size_t			ft_strlen(const char *str);
 char			*ft_strmap(const char *s, char (*f)(char));
 char			*ft_strmapi(const char *s, char (*f)(unsigned int, char));

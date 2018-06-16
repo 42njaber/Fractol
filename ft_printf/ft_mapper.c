@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 21:57:49 by njaber            #+#    #+#             */
-/*   Updated: 2018/01/19 11:23:19 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/30 02:58:13 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void			ft_mapper2(char c, t_mods mods, va_list arg, t_buf *buf)
 	if (conv.f)
 	{
 		i = buf->printed;
+		buf->tprinted = 0;
 		conv.f(mods, conv.parm, buf, arg);
 		i = buf->printed - i + buf->tprinted;
 	}

@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 01:57:02 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 22:20:31 by njaber           ###   ########.fr       */
+/*   Updated: 2018/06/01 01:20:09 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ cl_program		create_program_from_file(cl_context context, char *file)
 	int			rd;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
-		ft_error("[Erreur] Impossible d'ouvrir le fichier.\n");
+		return (NULL);
 	rd = read(fd, buf, 4096);
 	kernel = ft_strnew(rd);
 	ft_memcpy(kernel, buf, rd);
 	while ((rd = read(fd, buf, 4096)) > 0)
 		kernel = join_free(kernel, buf, rd);
 	if (rd == -1)
-		ft_error("[Erreur] Erreur durant la lecture du fichier.\n");
+		return (NULL);
 	ret = clCreateProgramWithSource(context, 1,
 			(const char**)&kernel, NULL, NULL);
 	free(kernel);
@@ -58,12 +58,16 @@ void			get_configs(t_ocl *opencl)
 
 	clGetContextInfo(opencl->gpu_context, CL_CONTEXT_NUM_DEVICES,
 			sizeof(unsigned int), &opencl->gpu_nbr, NULL);
+	ft_printf("Number of Gpus: %u\n", opencl->gpu_nbr);
 	clGetContextInfo(opencl->gpu_context, CL_CONTEXT_DEVICES,
 			sizeof(cl_device_id[16]), opencl->gpus, NULL);
 	clGetDeviceInfo(opencl->gpus[0], CL_DEVICE_MAX_WORK_GROUP_SIZE,
 			sizeof(tmp), tmp, NULL);
-	ft_printf("Max work-group size: %d\n", tmp[0]);
-	opencl->gpu_wg_sz = *tmp / 2u;
+	opencl->gpu_wg_sz = pow(2, trunc(log2(*tmp)));
+	ft_printf("Max work-group size: %d\n", opencl->gpu_wg_sz);
+	clGetDeviceInfo(opencl->gpus[0], CL_DEVICE_MAX_COMPUTE_UNITS,
+			sizeof(tmp), tmp, NULL);
+	ft_printf("Max compute units: %d\n", *tmp);
 	clGetDeviceInfo(opencl->gpus[0], CL_DEVICE_VERSION,
 			sizeof(tmp2), tmp2, &tmp3);
 	ft_printf("Version: %.*s\n", tmp3, tmp2);

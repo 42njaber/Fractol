@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:00:11 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 21:24:40 by njaber           ###   ########.fr       */
+/*   Updated: 2018/06/16 16:09:32 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void		print_data(t_ptr *p)
 	display_data_str(p->win, "Fract:", fract, 30);
 	free(fract);
 	display_data_vec2(p->win, "Positon:",
-			(t_vec2){p->dst_pos.x * 1000, p->dst_pos.y * 1000}, 50);
+			(t_vec2){p->dst_pos.x, p->dst_pos.y}, 50);
 	display_data_vec2(p->win, "Parm:",
-			(t_vec2){p->parm.x * 1000, p->parm.y * 1000}, 70);
+			(t_vec2){p->parm.x, p->parm.y}, 70);
 	display_data_float(p->win, "Pow:", p->pow, 90);
 	display_data_float(p->win, "Zoom:", p->dst_zoom, 110);
 	display_data_float(p->win, "Prec:", p->iter_max, 130);
@@ -94,7 +94,7 @@ int				loop_hook(void *parm)
 	update_tranform(p);
 	move(p);
 	draw_fractal(p);
-	paint_window(p->win, p->kernel);
+	paint_window(p->win, 1);
 	print_data(p);
 	return (0);
 }
@@ -109,7 +109,7 @@ int				loop_hook(void *parm)
 	update_tranform(p);
 	move(p);
 	draw_fractal(p);
-	paint_window(p->win, NULL);
+	paint_window(p->win, 1);
 	print_data(p);
 	return (0);
 }

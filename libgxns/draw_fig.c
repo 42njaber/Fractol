@@ -12,7 +12,7 @@
 
 #include "libgxns.h"
 
-static int		tint(double d)
+static int		tint(float d)
 {
 	return (rint(trunc(d)));
 }
@@ -30,7 +30,7 @@ static void		draw_line_no_kernel(t_img *img, unsigned int *colors, t_vec2 *v)
 {
 	t_vec2	unit;
 	t_vec2	pixel;
-	double	color;
+	float	color;
 
 	pixel = (t_vec2){v[0].x, v[0].y};
 	if (fabs(v[1].x - v[0].x) > fabs(v[1].y - v[0].y))

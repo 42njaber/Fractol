@@ -6,13 +6,13 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/12 18:12:18 by njaber            #+#    #+#             */
-/*   Updated: 2018/03/14 01:54:37 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/17 02:22:56 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libgxns.h"
 
-void	multiply(t_mat4 m1, t_mat4 m2)
+void	multiply(t_mat4 m1, t_mat4 m2, int stock_in_m2)
 {
 	int		i;
 	t_mat4	tmp;
@@ -23,6 +23,8 @@ void	multiply(t_mat4 m1, t_mat4 m2)
 				m1[i / 4 * 4 + 1] * m2[i % 4 + 4] +
 				m1[i / 4 * 4 + 2] * m2[i % 4 + 8] +
 				m1[i / 4 * 4 + 3] * m2[i % 4 + 12];
+	if (stock_in_m2)
+		ft_memcpy(m2, tmp, sizeof(tmp));
 	ft_memcpy(m1, tmp, sizeof(tmp));
 }
 
@@ -63,18 +65,17 @@ void	scale(t_mat4 m, t_vec3 v)
 
 void	rotate(t_mat4 m, t_vec3 v)
 {
-	t_mat4	tmp;
-
-	identity(tmp);
-	tmp[0] = cos(v.y / 180 * M_PI) * cos(v.z / 180 * M_PI);
-	tmp[1] = -sin(v.z / 180 * M_PI);
-	tmp[2] = sin(v.y / 180 * M_PI);
-	tmp[4] = sin(v.z / 180 * M_PI);
-	tmp[5] = cos(v.x / 180 * M_PI) * cos(v.z / 180 * M_PI);
-	tmp[6] = -sin(v.x / 180 * M_PI);
-	tmp[8] = -sin(v.y / 180 * M_PI);
-	tmp[9] = sin(v.x / 180 * M_PI);
-	tmp[10] = cos(v.x / 180 * M_PI) * cos(v.y / 180 * M_PI);
-	multiply(tmp, m);
-	ft_memcpy(m, tmp, sizeof(t_mat4));
+	v = (t_vec3){v.x / 180 * M_PI, v.y / 180 * M_PI, v.z / 180 * M_PI};
+	multiply((t_mat4){cos(v.z), -sin(v.z), 0, 0,
+						sin(v.z), cos(v.z), 0, 0,
+						0, 0, 1, 0,
+						0, 0, 0, 1}, m, 1);
+	multiply((t_mat4){cos(v.y), 0, -sin(v.y), 0,
+						0, 1, 0, 0,
+						sin(v.y), 0, cos(v.y), 0,
+						0, 0, 0, 1}, m, 1);
+	multiply((t_mat4){1, 0, 0, 0,
+						0, cos(v.x), -sin(v.x), 0,
+						0, sin(v.x), cos(v.x), 0,
+						0, 0, 0, 1}, m, 1);
 }

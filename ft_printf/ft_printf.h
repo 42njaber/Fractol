@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 21:11:55 by njaber            #+#    #+#             */
-/*   Updated: 2018/04/20 15:25:58 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/30 03:04:43 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct	s_buf {
 	t_list	*tbuf;
 	size_t	tprinted;
 	size_t	printed;
+	char	write;
+	char	*ret;
 	char	buf[B_SIZE];
 }				t_buf;
 
@@ -87,6 +89,7 @@ typedef union	u_ucd {
 }				t_ucd;
 
 int				ft_printf(const char *format, ...);
+char			*ft_printb(const char *format, ...);
 void			ft_error(const char *format, ...);
 char			*ft_mapper(const char *spec, va_list args, t_buf *buf);
 char			*pf_format(const char *parm, t_buf *buf, va_list arg);

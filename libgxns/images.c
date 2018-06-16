@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 10:10:08 by njaber            #+#    #+#             */
-/*   Updated: 2018/04/20 15:56:22 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/16 17:35:02 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	img_px(t_img *img, unsigned int color, t_ivec pixel)
 		(color >> 24);
 }
 
-void	init_new_image(t_win *win, t_img *img, t_ivec size)
+void	init_new_image(void *mlx, t_img *img, t_ivec size)
 {
-	img->link = mlx_new_image(win->mlx, size.x, size.y);
+	img->link = mlx_new_image(mlx, size.x, size.y);
 	img->size = size;
 	img->buf = (unsigned char*)mlx_get_data_addr(img->link, &(img->px_size),
 			&(img->line), &(img->endian));

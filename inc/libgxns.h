@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 23:56:43 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 22:21:38 by njaber           ###   ########.fr       */
+/*   Updated: 2018/06/16 15:13:51 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct	s_vec3 {
 	double	z;
 }				t_vec3;
 
-typedef float	t_mat4[16];
+typedef double	t_mat4[16];
 
 typedef struct	s_ivec {
 	int		x;
@@ -99,21 +99,29 @@ void			identity(t_mat4 m);
 void			translate(t_mat4 m, t_vec3 v);
 void			scale(t_mat4 m, t_vec3 v);
 void			rotate(t_mat4 m, t_vec3 v);
-void			multiply(t_mat4 m1, t_mat4 m2);
+void			multiply(t_mat4 m1, t_mat4 m2, int stock_in_m2);
+
+double			sqr(double n);
 
 t_vec2			c_mult(t_vec2 z1, t_vec2 z2);
 t_vec2			c_add(t_vec2 z1, t_vec2 z2);
 t_vec2			c_pow(t_vec2 z1, int pow);
 
-int				init_new_win(t_win *win, t_ivec size, char *title);
-void			paint_window(t_win *win, t_kernel *opencl_kernel);
+t_vec3			vec_sub(t_vec3 v1, t_vec3 v2);
+t_vec3			vec_add(t_vec3 v1, t_vec3 v2);
+t_vec3			vec_mult(t_vec3 v1, double d);
+double			length(t_vec3 v1);
+double			scalar(t_vec3 v1, t_vec3 v2);
+
+int				init_new_win(void *mlx, t_win *win, t_ivec size, char *title);
+void			paint_window(t_win *win, int clear);
 
 void			display_data_float(t_win *win, char *name, double data, int y);
 void			display_data_vec2(t_win *win, char *name, t_vec2 data, int y);
 void			display_data_vec3(t_win *win, char *name, t_vec3 data, int y);
 void			display_data_str(t_win *win, char *name, char *data, int y);
 
-void			init_new_image(t_win *win, t_img *img, t_ivec size);
+void			init_new_image(void *mlx, t_img *img, t_ivec size);
 void			img_px(t_img *img, unsigned int color, t_ivec pixel);
 void			clear_img(t_img *img);
 
