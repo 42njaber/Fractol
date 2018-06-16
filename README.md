@@ -37,6 +37,15 @@ The other kind of modification is done by altering the sign of z[n], this can be
   + 7 : absolute imaginary part after raising to power
   + 8 : negative imaginary part after raising to power
 
+## Compilation
+
+This project can compil using alternative options, just add the option as argument to the makefile during compilation (OPTION=VALUE):
+- OPENCL : TRUE/FALSE (default:TRUE)
+- DOUBLE : TRUE/FALSE (defalut:TRUE), this option only works if OpenCL is active
+- KEYBOARD : AZERTY/QWERTY (default:AZERTY)
+
+---
+
 ## Images
 
 Mandlebrot
