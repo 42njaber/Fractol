@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispaly_opencl.c                                   :+:      :+:    :+:   */
+/*   display_opencl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 19:24:15 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 22:52:51 by njaber           ###   ########.fr       */
+/*   Updated: 2018/06/16 13:28:12 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void					draw_fractal(t_ptr *p)
 			p->win->img.buf, 1, &event, NULL)) != CL_SUCCESS)
 		ft_error("[Erreur] Echec durant la lecture du buffer"
 				"%<R>  (Error code: %<i>%2d)%<0>\n", err);
+	clReleaseEvent(event);
 	clFinish(p->opencl->gpu_command_queue);
 }
 
@@ -96,6 +97,7 @@ void					draw_fractal(t_ptr *p)
 			p->win->img.buf, 1, &event, NULL)) != CL_SUCCESS)
 		ft_error("[Erreur] Echec durant la lecture du buffer"
 				"%<R>  (Error code: %<i>%2d)%<0>\n", err);
+	clReleaseEvent(event);
 	clFinish(p->opencl->gpu_command_queue);
 }
 

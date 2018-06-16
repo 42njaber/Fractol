@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 14:52:32 by njaber            #+#    #+#             */
-/*   Updated: 2018/05/15 22:09:07 by njaber           ###   ########.fr       */
+/*   Updated: 2018/05/21 00:28:11 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			move(t_ptr *p)
 
 static	void	keys3(int key_code, t_ptr *p)
 {
-	if (get_key_digit(key_code) > 0 && get_key_digit(key_code) <= 6)
+	if (get_key_digit(key_code) > 0 && get_key_digit(key_code) <= 8)
 		p->fract_parm ^= 0x1 << (get_key_digit(key_code) - 1);
 	if (key_code == K_M)
 		p->pow++;
@@ -44,7 +44,7 @@ static	void	keys2(int key_code, t_ptr *p)
 			p->iter_max++;
 		if (key_code == K_L)
 			p->iter_max = ft_max(p->iter_max - 1, 4);
-		if (get_key_digit(key_code) > 0 && get_key_digit(key_code) <= 8)
+		if (get_key_digit(key_code) > 0 && get_key_digit(key_code) <= 6)
 			set_fract_parm(p, get_key_digit(key_code) - 1);
 		if (key_code == K_0)
 			p->palette = (p->palette + 1) % 3;
