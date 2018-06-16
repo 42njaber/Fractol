@@ -3,7 +3,7 @@
 This project generates and displays a few different fractals.
 The available fractals are Mandlebrot, Julia, and a many of their variations, including some presets.
 
-The available presets are : MANDLEBROT, BURNING_SHIP, JULIA and 3 other julia variations.
+The available presets are : mandlebrot, burning ship, julia and 3 other julia variations.
 
 ## Custom fractals
 
@@ -28,26 +28,37 @@ The other kind of modification is done by altering the sign of z[n], this can be
 - 1-6 : switches between the different fractals presets
 - Shift + L/M : decreases/increases the fractal's power
 - Shift + 1-8 : switches the different fractal customisations on/off
-.. 1. absolute real part before raising to power
-.. 2. negative real part before raising to power
-.. 3. absolute imaginary part before raising to power
-.. 4. negative imaginary part before raising to power
-.. 1. absolute real part after raising to power
-.. 2. negative real part after raising to power
-.. 3. absolute imaginary part after raising to power
-.. 4. negative imaginary part after raising to power
+  1. absolute real part before raising to power
+  2. negative real part before raising to power
+  3. absolute imaginary part before raising to power
+  4. negative imaginary part before raising to power
+  1. absolute real part after raising to power
+  2. negative real part after raising to power
+  3. absolute imaginary part after raising to power
+  4. negative imaginary part after raising to power
 
 ## Images
 
 Mandlebrot
+
 ![Image](img/Mandlebrot.png)
+
 Julia with a different color palette
+
 ![Image](img/BlackWhite.png)
+
 Zoom on Julia with discrete coloring
+
 ![Image](img/JuliaZoom.png)
+
 Julia with power setting to 3
+
 ![Image](img/JuliaP3.png)
+
 One of the Julia presets
+
 ![Image](img/Totem.png)
+
 Another Julia preset
+
 ![Image](img/Juliette.png)
