@@ -1,3 +1,4 @@
 *.[oa]
 .*.swp
 fractol
+**/.DS_STORE

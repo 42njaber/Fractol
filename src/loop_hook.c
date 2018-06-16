@@ -6,7 +6,7 @@
 /*   By: njaber <neyl.jaber@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:00:11 by njaber            #+#    #+#             */
-/*   Updated: 2018/06/16 16:09:32 by njaber           ###   ########.fr       */
+/*   Updated: 2018/06/16 18:03:02 by njaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void		update_tranform(t_ptr *p)
 			(p->zoom / tmp_zoom - 1)) / (p->zoom / tmp_zoom)};
 	if (p->rot_mode != 0)
 		p->color_rot = fmod(p->color_rot +
-			copysign((double)1 / (p->win->fps + 1), (double)p->rot_mode), 1);
+			copysign((double)0.1 / (p->win->fps + 1), (double)p->rot_mode), 1);
 }
 
 #ifdef OPENCL
