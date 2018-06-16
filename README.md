@@ -28,14 +28,14 @@ The other kind of modification is done by altering the sign of z[n], this can be
 - 1-6 : switches between the different fractals presets
 - Shift + L/M : decreases/increases the fractal's power
 - Shift + 1-8 : switches the different fractal customisations on/off
-  1. absolute real part before raising to power
-  2. negative real part before raising to power
-  3. absolute imaginary part before raising to power
-  4. negative imaginary part before raising to power
-  1. absolute real part after raising to power
-  2. negative real part after raising to power
-  3. absolute imaginary part after raising to power
-  4. negative imaginary part after raising to power
+  + 1 : absolute real part before raising to power
+  + 2 : negative real part before raising to power
+  + 3 : absolute imaginary part before raising to power
+  + 4 : negative imaginary part before raising to power
+  + 5 : absolute real part after raising to power
+  + 6 : negative real part after raising to power
+  + 7 : absolute imaginary part after raising to power
+  + 8 : negative imaginary part after raising to power
 
 ## Images
 
